@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import TestComponent from "./components/component/Components";
+import WithDataComponent from "./components/withDataComponent/WithDataComponent";
 
 function App() {
+  const testProps = {
+    testValue: 1,
+    testName: 'asdasd'
+  }
+  const params = {
+    endpoint: 'https://jsonplaceholder.typicode.com/todos/1',
+    propName: 'users'
+  }
+
+  const testHoc = class WithDataComponent extends React.Component {}
+
+  const Hoc = WithDataComponent(TestComponent, params.endpoint, params.propName)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <TestComponent {...testProps}></TestComponent> */}
+      <Hoc {...testProps} endpoint={params.endpoint} propName={params.propName}></Hoc>
+     
     </div>
   );
 }
